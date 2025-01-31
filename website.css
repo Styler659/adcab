@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+body {
+    background-color: #2980b9; /* ✅ Updated Blue Theme */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ffffff;
+    overflow-x: hidden;
+    flex-direction: column;
+    transform: scale(0.9);  /* ✅ Shrinks UI to 90% */
+    transform-origin: center top;
+}
+
+/* Header */
+header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+/* Rectangle Box */
+.rectangle-box {
+    background: linear-gradient(135deg, #d4eaf7, #85b6da); /* ✅ Adjusted to match #2980b9 theme */
+    width: 850px;
+    min-height: 500px;
+    position: relative;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease-in-out;
+}
+
+.rectangle-box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Background Image Fix */
+.box-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ✅ Fix to ensure full image is visible */
+    border-radius: 15px;
+    filter: blur(2px); /* ✅ Slight blur effect */
+}
+
+/* Lines */
+.line1, .line2 {
+    position: absolute;
+    width: 20%;
+    height: 2px;
+    background-color: #1d5c85; /* ✅ Darker shade of #2980b9 */
+    transition: all 0.3s ease-in-out;
+}
+
+.line1 { top: 18%; left: 10%; }
+.line2 { top: 32%; left: 70%; }
+
+/* Sentences */
+.sentence1, .sentence2 {
+    position: absolute;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #154c72; /* ✅ Darker Blue */
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.sentence1 { top: 18%; left: 40%; transform: translateX(-50%); }
+.sentence2 { top: 32%; left: 55%; transform: translateX(-50%); }
+
+/* Adjust Button Container */
+.button-container {
+    position: absolute;
+    bottom: 240px; /* ⬆ Move buttons slightly up */
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    gap: 80px; /* ✅ Adds more spacing between buttons */
+    padding: 0;
+}
+
+/* Button Styling */
+.button {
+    background-color: #2980b9; /* ✅ Updated to match theme */
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #1d5c85; /* ✅ Darker shade for hover effect */
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rectangle-box {
+        width: 90%;
+        height: auto;
+    }
+
+    .sentence1, .sentence2 { font-size: 18px; }
+
+    .button {
+        font-size: 14px;
+        padding: 10px 25px;
+    }
+}

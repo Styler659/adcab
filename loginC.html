@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="lpage.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <p class="error-message" id="error-message">Password must be at least 8 characters long</p>
+            </div>
+
+            <button type="button" class="login-btn" onclick="submitLogin()">Login as Customer</button>
+        </form>
+    </div>
+
+    <script>
+        function submitLogin() {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (username === "" || password === "") {
+                alert("Please enter both username and password.");
+                return;
+            }
+
+            if (password.length < 8) {
+                errorMessage.style.display = "block";
+                return;
+            } else {
+                errorMessage.style.display = "none";
+            }
+
+            // Redirect to business.html after successful login
+            window.location.href = "customer.html";
+        }
+    </script>
+</body>
+</html>

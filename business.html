@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>Business Dashboard</h2>
+        </header>
+
+        <main>
+            <section>
+                <form id="ad-form" class="form-container">
+                    <label for="ad-tag">Advertisement Tag:</label>
+                    <input type="text" id="ad-tag" placeholder="Enter advertisement tag" required>
+
+                    <label for="tenure">Tenure (months):</label>
+                    <input type="number" id="tenure" name="tenure" min="1" required placeholder="Enter tenure in months">
+
+                    <label for="rate">Offer Rate($):</label>
+                    <input type="number" id="rate" name="rate" min="0" required placeholder="Enter rate">
+
+                    <label for="contact">Contact No:</label>
+                    <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" required placeholder="Enter 10-digit number">
+
+                    <button type="submit" class="btn-primary">Add Advertisement</button>
+                </form>
+            </section>
+
+            <section>
+                <h3>Existing Advertisements</h3>
+                <table id="ad-table">
+                    <thead>
+                        <tr>
+                            <th>Advertisement Tag</th>
+                            <th>Tenure (months)</th>
+                            <th>Rate Offered ($)</th>
+                            <th>Contact No</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Advertisements will be dynamically added here -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Real-time validation for Contact Info
+        document.getElementById("contact").addEventListener("input", function () {
+            this.setCustomValidity(this.value.length === 10 ? "" : "Please enter a 10-digit contact number.");
+        });
+
+        // Handle form submission
+        document.getElementById("ad-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const adTag = document.getElementById("ad-tag").value;
+            const tenure = document.getElementById("tenure").value;
+            const rate = document.getElementById("rate").value;
+            const contact = document.getElementById("contact").value;
+
+            if (tenure <= 0 || rate < 0) {
+                alert("Tenure and rate must be positive values.");
+                return;
+            }
+
+            if (!contact.match(/^\d{10}$/)) {
+                alert("Please enter a valid 10-digit contact number.");
+                return;
+            }
+
+            if (adTag && tenure && rate && contact) {
+                const adData = { adTag, tenure, rate, contact };
+                const ads = JSON.parse(localStorage.getItem("ads")) || [];
+                ads.push(adData);
+                localStorage.setItem("ads", JSON.stringify(ads));
+                document.getElementById("ad-form").reset();
+                displayAds();
+            } else {
+                alert("Please fill in all fields.");
+            }
+        });
+
+        // Display ads in the table
+        function displayAds() {
+            const ads = JSON.parse(localStorage.getItem("ads")) || [];
+            const tableBody = document.querySelector("#ad-table tbody");
+            tableBody.innerHTML = "";
+
+            ads.forEach((ad, index) => {
+                const row = `
+                    <tr>
+                        <td>${ad.adTag}</td>
+                        <td>${ad.tenure} months</td>
+                        <td>$${ad.rate}</td>
+                        <td>${ad.contact}</td>
+                        <td><button class="btn-danger" onclick="removeAd(${index})">Remove</button></td>
+                    </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Remove selected ad
+        function removeAd(index) {
+            const ads = JSON.parse(localStorage.getItem("ads")) || [];
+            ads.splice(index, 1);
+            localStorage.setItem("ads", JSON.stringify(ads));
+            displayAds();
+        }
+
+        // Initialize the page with saved ads
+        document.addEventListener("DOMContentLoaded", displayAds);
+    </script>
+</body>
+</html>

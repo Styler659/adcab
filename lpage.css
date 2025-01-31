@@ -1,0 +1,116 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling with More Dynamic Animated Background */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(-45deg, #1B4F72, #2980b9, #3498db, #5DADE2);
+    background-size: 400% 400%;
+    animation: gradientAnimation 8s infinite alternate ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Stronger Background Animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Login Container */
+.login-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Fade-in Effect */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Heading */
+h2 {
+    font-size: 28px;
+    color: #2980b9;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Input Group */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Input Focus Effect */
+.input-group input:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 10px rgba(41, 128, 185, 0.5);
+}
+
+/* Password Error Message */
+.error-message {
+    display: none;
+    font-size: 14px;
+    color: red;
+    margin-top: 5px;
+}
+
+/* Login Button with Hover Animation */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #2980b9, #3498db, #5DADE2);
+    background-size: 200% 200%;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: buttonAnimation 3s infinite alternate ease-in-out;
+}
+
+/* Stronger Button Gradient Animation */
+@keyframes buttonAnimation {
+    0% { background-position: left; }
+    100% { background-position: right; }
+}
+
+/* Button Hover Effect */
+.login-btn:hover {
+    background: linear-gradient(90deg, #21618C, #2E86C1, #5DADE2);
+    background-size: 200% 200%;
+}
